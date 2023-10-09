@@ -1,2 +1,10 @@
-main: keyfilter.c
-	gcc -std=c11 -Wall -Wextra -Werror keyfilter.c -o keyfilter
+CC = gcc
+
+CFLAGS = -std=c11 -Wall -Wextra -Werror
+
+TARGET = bin/keyfilter
+
+SRC = $(wildcard src/*.c)
+
+$(TARGET): $(SRC)
+	$(CC) $^ -o $@ $(CFLAGS)
