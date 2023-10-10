@@ -19,22 +19,50 @@ void compare(char *input, char *buf, char *out, int out_idx)
     str_toupper(buf);
 
     if (iscontaining(input, buf) && strlen(input) == strlen(buf)-1) {
-        /* temp */
-        out[0] = '\t';
+        found(buf, out);
     } else {
-        int i = 0;
-        while(i+1 < (int)strlen(buf)) {
+        unsigned long i = 0;
+        while(i+1 < strlen(buf)) {
             if (buf[i] == input[i]) {
                 i++;
             } else if (i > 0) {
-                out[out_idx] = buf[i]; 
+                out[0] = '2';
+                if (!contains_c(buf[i], out)) {
+                    out[out_idx+1] = buf[i]; 
+                    break;
+                }
+
                 break;
             } else {
-                out[out_idx] = '\0';
+                out[0] = '0';
                 break;
             }
         }
     } 
+}
+
+void found(char *input, char *buf) 
+{
+    buf[0] = '1';
+    for (unsigned long i = 0; i < strlen(input); i++) {
+        if (i+1 <= strlen(buf)) {
+            buf[i+1] = input[i];
+        }
+    }
+}
+
+int contains_c(char input, char *str)
+{
+    str_toupper(&input);
+    str_toupper(str);
+
+    for (unsigned long i = 0; i < strlen(str); i++) {
+        if (str[i] == input) {
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
 int iscontaining(char *slice, char *in) 
