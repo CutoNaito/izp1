@@ -43,6 +43,11 @@ void compare(char *input, char *buf, char *out, int out_idx)
 
 void found(char *input, char *buf) 
 {
+    /*
+     * Assigns one string to the other
+     *
+     * Used on the "Found" state (if arg == address)
+     */
     buf[0] = '1';
     for (unsigned long i = 0; i < strlen(input); i++) {
         if (i+1 <= strlen(buf)) {
@@ -53,6 +58,9 @@ void found(char *input, char *buf)
 
 int contains_c(char input, char *str)
 {
+    /*
+     * Checks if string contains a specified character
+     */
     str_toupper(&input);
     str_toupper(str);
 
@@ -67,6 +75,9 @@ int contains_c(char input, char *str)
 
 int iscontaining(char *slice, char *in) 
 {
+    /*
+     * Checks if string contains a specified string (slice)
+     */
     str_toupper(slice);
     str_toupper(in);
 
@@ -83,6 +94,9 @@ int iscontaining(char *slice, char *in)
 
 int isletter(char c) 
 {
+    /*
+     * Returns true (1) if specified character is a letter
+     */
     if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'A')) {
         return 1;
     }
@@ -92,6 +106,9 @@ int isletter(char c)
 
 void sort(char *input) 
 {
+    /*
+     * BubbleSort. Sorts a specified array.
+     */
     for (unsigned long i = 0; i < strlen(input); ++i) {
         for (unsigned long j = 0; j < strlen(input) - i - 1; ++j) {
             if (input[i] > input[i+1]) {
@@ -105,6 +122,9 @@ void sort(char *input)
 
 void str_toupper(char *input) 
 {
+    /*
+     * Converts a string to uppercase
+     */
     for (unsigned long i = 0; i < strlen(input); i++) {
         if (input[i] >= 'a' && input[i] <= 'z') {
             input[i] = input[i] - 32;

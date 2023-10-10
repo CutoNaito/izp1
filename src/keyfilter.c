@@ -4,8 +4,8 @@
 
 int main(int argc, char *argv[]) 
 {
-    char buffer[255];
-    char enabled[255];
+    char buffer[255]; /* Buffer, used for input (file) */
+    char enabled[255]; /* Output string */
     
     if (argc == 1) {
         enabled[0] = '2';
@@ -18,11 +18,11 @@ int main(int argc, char *argv[])
         }
     } else if (argc == 2) {
         int j = 0;
+        /* Input reading into buffer line by line */
         while (fgets(buffer, 100, stdin)) {
             if (iscontaining(argv[1], buffer)) {
                 compare(argv[1], buffer, enabled, j);
                 j++;
-                // printf("%s\n", buffer);
             } else {
                 continue;
             }
@@ -32,10 +32,12 @@ int main(int argc, char *argv[])
         return 1;
     }
     
+    /* Assigns "Not found" state, if no state was assigned */
     if (enabled[0] != '1' && enabled[0] != '2') {
         enabled[0] = '0';
     }
 
+    /* Evaluation */
     switch (enabled[0]) {
     case '0':
         printf("Not found.\n");
