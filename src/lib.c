@@ -3,7 +3,7 @@
 #include "lib.h"
 
 /* FUNCTION DEFINITIONS */
-void compare(char *input, char *buf, char *out, int out_idx) 
+int compare(char *input, char *buf, char *out, int out_idx) 
 {
     /* Compares two strings and adds the first non-common character to a reserved buffer 
      *
@@ -18,8 +18,10 @@ void compare(char *input, char *buf, char *out, int out_idx)
     str_toupper(input);
     str_toupper(buf);
 
+    /* Check for found */
     if (iscontaining(input, buf) && strlen(input) == strlen(buf)-1) {
         found(buf, out);
+        return 2;
     } else {
         unsigned long i = 0;
         while(i+1 < strlen(buf)) {
@@ -29,6 +31,7 @@ void compare(char *input, char *buf, char *out, int out_idx)
                 out[0] = '2';
                 if (!contains_c(buf[i], out)) {
                     out[out_idx+1] = buf[i]; 
+                    return 1;
                     break;
                 }
 
@@ -39,6 +42,8 @@ void compare(char *input, char *buf, char *out, int out_idx)
             }
         }
     } 
+
+    return 0;
 }
 
 void found(char *input, char *buf) 
@@ -50,7 +55,8 @@ void found(char *input, char *buf)
      */
     buf[0] = '1';
     for (unsigned long i = 0; i < strlen(input); i++) {
-        if (i+1 <= strlen(buf)) {
+        if (i+1 <= strlen(buf) && input[i] != '\n') {
+            printf("%c\n", input[i]);
             buf[i+1] = input[i];
         }
     }

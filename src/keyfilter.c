@@ -10,23 +10,31 @@ int main(int argc, char *argv[])
     if (argc == 1) {
         enabled[0] = '2';
         int i = 0;
-        while (fgets(buffer, 100, stdin)) {
-            if (isletter(buffer[0]) && !contains_c(buffer[0], enabled)) {
+        while (fgets(buffer, 100, stdin) != NULL) {
+            if (!contains_c(buffer[0], enabled)) {
                 enabled[i+1] = buffer[0];
                 i++;
             }
         }
+        
+        enabled[i+1] = '\0';
     } else if (argc == 2) {
+        int count = 0;
         int j = 0;
         /* Input reading into buffer line by line */
-        while (fgets(buffer, 100, stdin)) {
+        while (fgets(buffer, 100, stdin) != NULL) {
             if (iscontaining(argv[1], buffer)) {
-                compare(argv[1], buffer, enabled, j);
+                if (compare(argv[1], buffer, enabled, j) == 1) {
+                    count++;
+                }
+
                 j++;
             } else {
                 continue;
             }
         }
+        
+        enabled[count+1] = '\0';
     } else {
         printf("Invalid argument count.\n");
         return 1;
