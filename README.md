@@ -3,8 +3,8 @@
 ## Installation:
 ### Linux:
 ```
-git clone https://github.com/CutoNaito/izp2.git
-cd izp2
+git clone https://github.com/CutoNaito/izp1.git
+cd izp1
 make
 ```
 
