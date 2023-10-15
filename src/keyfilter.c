@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
             }
         }
     } else {
-        printf("Invalid argument count.\n");
+        fprintf(stderr, "Invalid argument count.\n");
         return 1;
     }
     
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
         break;
 
     default:
-        printf("Something went wrong.\n");
+        fprintf(stderr, "Something went wrong.\n");
         return -1;
     }
 
