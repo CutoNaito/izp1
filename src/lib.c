@@ -31,6 +31,7 @@ int compare(char *input, char *buf, char *out, int out_idx)
                 out[0] = '2';
                 if (!contains_c(buf[i], out)) {
                     out[out_idx+1] = buf[i]; 
+                    out[out_idx+2] = '\0';
                     return 1;
                     break;
                 }

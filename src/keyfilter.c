@@ -13,11 +13,10 @@ int main(int argc, char *argv[])
         while (fgets(buffer, 100, stdin) != NULL) {
             if (!contains_c(buffer[0], enabled)) {
                 enabled[i+1] = buffer[0];
+                enabled[i+2] = '\0';
                 i++;
             }
         }
-        
-        enabled[i+1] = '\0';
     } else if (argc == 2) {
         int count = 0;
         int j = 0;
@@ -33,8 +32,6 @@ int main(int argc, char *argv[])
                 continue;
             }
         }
-        
-        enabled[count+1] = '\0';
     } else {
         printf("Invalid argument count.\n");
         return 1;
