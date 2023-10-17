@@ -88,15 +88,14 @@ int iscontaining(char *slice, char *in)
     str_toupper(slice);
     str_toupper(in);
 
-    int result = 1;
     for (unsigned long i = 0; i < strlen(slice) && i < strlen(in); i++) {
         if (slice[i] != in[i]) {
-            result = 0;
+            return 0;
             break;
         }
     }
 
-    return result;
+    return 1;
 }
 
 int isletter(char c) 
