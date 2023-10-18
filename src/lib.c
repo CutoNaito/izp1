@@ -57,7 +57,6 @@ void found(char *input, char *buf)
     buf[0] = '1';
     for (unsigned long i = 0; i < strlen(input); i++) {
         if (i+1 <= strlen(buf) && input[i] != '\n') {
-            printf("%c\n", input[i]);
             buf[i+1] = input[i];
         }
     }
