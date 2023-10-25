@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
             if (iscontaining(argv[1], buffer)) {
                 if (compare(argv[1], buffer, enabled, j) == 1) {
                     count++;
+                } else if (compare(argv[1], buffer, enabled, j) == 2) {
+                    break;
                 }
 
                 j++;
@@ -59,7 +61,7 @@ int main(int argc, char *argv[])
 
     default:
         fprintf(stderr, "Something went wrong.\n");
-        return -1;
+        return 1;
     }
 
     return 0;
