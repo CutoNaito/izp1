@@ -44,6 +44,16 @@ int main(int argc, char *argv[])
         enabled[0] = '0';
     }
 
+    /* I am.. not very proud of this. Maybe if I could read I wouldn't have to do this */
+    if (strlen(enabled) == 2 && enabled[0] == '2') {
+        char temp = enabled[1];
+        char *argupper = argv[1];
+        str_toupper(argupper);
+        strcpy(enabled, "1");
+        strcat(enabled, argupper);
+        enabled[strlen(enabled)] = temp;
+    }
+
     /* Evaluation */
     switch (enabled[0]) {
     case '0':
