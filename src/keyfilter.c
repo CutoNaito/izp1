@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     
     /* Assigns "Not found" state, if no state was assigned */
     if (result.state != 1 && result.state != 2) {
-        result.state = '0';
+        result.state = 0;
     }
 
     /* Evaluation */
