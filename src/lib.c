@@ -3,16 +3,13 @@
 #include "lib.h"
 
 /* FUNCTION DEFINITIONS */
-int compare(char *input, char *buf, char *out, int out_idx) 
+int compare(char *input, char *buf, Result *out, int out_idx) 
 {
     /* Compares two strings and adds the first non-common character to a reserved buffer 
      *
      * If the two specified strings don't have any common characters, adds a NULL character.
      * If the two specified strings are equivalent, adds a TAB.
      * */
-    if (strlen(input) == 0) {
-        printf("Unspecified input.\n");
-    }
     
     /* Converts both specified strings to uppercase */
     str_toupper(input);
@@ -25,20 +22,24 @@ int compare(char *input, char *buf, char *out, int out_idx)
     } else {
         unsigned long i = 0;
         while(i+1 < strlen(buf)) {
+            /* Continues if the chars are equal */
             if (buf[i] == input[i]) {
                 i++;
+
+            /* If atleast one char is equal */
             } else if (i > 0) {
-                out[0] = '2';
-                if (!contains_c(buf[i], out)) {
-                    out[out_idx+1] = buf[i]; 
-                    out[out_idx+2] = '\0';
+                out->state = 2;
+
+                if (!contains_c(buf[i], out->result)) {
+                    out->result[out_idx] = buf[i]; 
+                    out->result[out_idx+1] = '\0';
                     return 1;
                     break;
                 }
 
                 break;
             } else {
-                out[0] = '0';
+                out->state = 0;
                 break;
             }
         }
@@ -47,17 +48,17 @@ int compare(char *input, char *buf, char *out, int out_idx)
     return 0;
 }
 
-void found(char *input, char *buf) 
+void found(char *input, Result *out) 
 {
     /*
      * Assigns one string to the other
      *
      * Used on the "Found" state (if arg == address)
      */
-    buf[0] = '1';
+    out->state = 1;
     for (unsigned long i = 0; i < strlen(input); i++) {
-        if (i+1 <= strlen(buf) && input[i] != '\n') {
-            buf[i+1] = input[i];
+        if (i <= strlen(out->result) && input[i] != '\n') {
+            out->result[i] = input[i];
         }
     }
 }
@@ -114,12 +115,14 @@ void sort(char *input)
     /*
      * BubbleSort. Sorts a specified array.
      */
-    for (unsigned long i = 0; i < strlen(input); ++i) {
-        for (unsigned long j = 0; j < strlen(input) - i - 1; ++j) {
-            if (input[i] > input[i+1]) {
-                char temp = input[i];
-                input[i] = input[i+1];
-                input[i+1] = temp;
+    char temp;
+    str_toupper(input);
+    for (unsigned long i = 0; i < strlen(input); i++) {
+        for (unsigned long j = 0; j < strlen(input)-1; j++) {
+            if (input[j] > input[j+1]) {
+                temp = input[j];
+                input[j] = input[j+1];
+                input[j+1] = temp;
             }
         }
     }

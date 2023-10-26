@@ -1,9 +1,14 @@
 #ifndef __LIB_
 #define __LIB_
 
-int compare(char *input, char *buf, char *out, int out_idx);
+typedef struct Result {
+    char result[255];
+    int state;
+} Result;
+
+int compare(char *input, char *buf, Result *out, int out_idx);
 int contains_c(char input, char *str);
-void found(char *input, char *buf);
+void found(char *input, Result *out);
 int iscontaining(char *slice, char *in);
 int isletter(char c); /*  */
 void sort(char *input); /* BubbleSort. Sorts all characters in a string */
