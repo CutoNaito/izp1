@@ -3,6 +3,9 @@ A program for address keyfiltering.
 
 ### Installation:
 #### Linux:
+
+1. Install [Zig](https://ziglang.org/download/)
+2. Run:
 ```
 git clone https://github.com/CutoNaito/izp1.git
 cd izp1
